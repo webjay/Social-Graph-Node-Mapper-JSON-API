@@ -11,7 +11,6 @@ Sammy.debug = true;
 });*/
 
 GET('/', function () {
-	//return template('index.html');
 	return redirect('/index.html');
 });
 
@@ -57,7 +56,9 @@ GET('/convert', function () {
 		return result;
 	}
 	// error
-	return JSON.stringify({error: 'I need a from or to parameter.'});
+	this.response.mime = 'text/plain';
+	this.response.code = 415;
+	return 'Error 415: I need a from or to parameter.';
 });
 
 function isArray (obj) {
