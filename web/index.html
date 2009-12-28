@@ -24,7 +24,7 @@
 		});
 		function convert () {
 			var urls = jQuery('#urls').val();
-			var server = 'http://127.0.0.1:8080/convert';
+			var server = 'http://sgnodemapper.smart.joyent.com/convert';
 			var parameters = (urls.substr(0, 3).toLowerCase() == 'sgn') ? {from: urls} : {to: urls};
 			jQuery.getJSON(server, parameters, function (data) {
 				jQuery('#output').empty();
