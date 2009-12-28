@@ -15,12 +15,14 @@ GET('/', function () {
 });
 
 GET('/convert', function () {
-	if (this.request.query['from']) {
+	if (this.request.query['from'] || this.request.query['to']) {
+		if (this.request.query['from']) {
+			var result = urlFromGraphNode(this.request.query['from']);
+		} else if (this.request.query['to']) {
+			var result = urlToGraphNode(this.request.query['to']);
+		}
 		this.response.mime = 'application/json';
-		return urlFromGraphNode(this.request.query['from']);
-	} else if (this.request.query['to']) {
-		this.response.mime = 'application/json';
-		return urlToGraphNode(this.request.query['to']);
+		return '[' + result + ']';
 	}
 	return 'I need a from or to parameter.';
 });
