@@ -3,55 +3,127 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Social Graph Node Mapper JSON API</title>
-	<link rel="stylesheet" href="./css/blueprint-css/blueprint/screen.css" type="text/css" media="screen" charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/css/blueprint-css/blueprint/screen.css" media="screen, projection">
+	<!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="/css/blueprint-css/blueprint/ie.css" media="screen, projection"><![endif]-->
+	<script src="http://www.google.com/jsapi"></script>
+	<script>
+		google.load('jquery', '1');
+		google.setOnLoadCallback(function(){
+			// form submit
+			jQuery('#sgn').submit(function(){
+				convert();
+				return false;
+			});
+			// for tests
+			jQuery('#examples a').live('click', function () {
+				var url = jQuery(this).text();
+				jQuery('#urls').val(url);
+				convert();
+				return false;
+			});
+		});
+		function convert () {
+			var urls = jQuery('#urls').val();
+			var server = 'http://127.0.0.1:8080/convert';
+			var parameters = (urls.substr(0, 3).toLowerCase() == 'sgn') ? {from: urls} : {to: urls};
+			jQuery.getJSON(server, parameters, function (data) {
+				jQuery('#output').empty();
+				jQuery('#output').show();
+				var output = '';
+				output += '<dl>';
+				jQuery.each(data, function (type, value) {
+					output += '<dt>' + type + '</dt>';
+					output += '<dd>' + value + '</dd>';
+				});
+				output += '</dl>';
+				jQuery('#output').append(output);
+			});
+		}
+	</script>
 </head>
 <body>
+	
+<div class="container">
 
-<header>
-	<h1>Social Graph Node Mapper JSON API</h1>
-	<nav><ul>
-		<li class="active"><a href="#">home</a></li>
-		<li><a href="#">portfolio</a></li>
-		<li><a href="#">blog</a></li>
-		<li><a href="#">contact</a></li>
-	</ul></nav>
-</header>
+	<div class="prepend-top">
+		<header>
+			<h1>Social Graph Node Mapper JSON API</h1>
+		</header>
+	</div>
 
-<section>
-	<ol class="hfeed">
-		<li><article class="hentry">
-			<header>
-				<h2 class="entry-title"><a href="#" rel="bookmark" title="Permalink to this POST TITLE">This be the title</a></h2>
-			</header>
+	<section>
+		<ol class="hfeed" style="list-style-type:none; padding:0;">
+			<li><article class="hentry">
+				<header>
+					<h2 class="entry-title">About</h2>
+				</header>
+				<p class="entry-content">
+					The Social Graph Node Mapper JSON API is a <abbr title="Representational State Transfer">RESTful</abbr> version of Google's <a href="http://code.google.com/p/google-sgnodemapper/">Social Graph Node Mapper</a>.
+					The benefit of it being <abbr title="Software as a service">SaaS</abbr> and RESTful is that you can use it in your server-side code.
+					<p>We use Social Graph Nodes within <a href="http://konfect.com/" rel="me">Konfect</a>. Try it <a href="http://konfect.com/explore/sgn%3A%2F%2Ftwitter.com%2F%3Fident%3Dwebjay">here</a>.
+				</p>
+			</article></li>
+			<li><article class="hentry">
+				<header>
+					<h2 class="entry-title">How to use the API</h2>
+				</header>
+				<p class="entry-content">
+					Requests to <code>http://sgnodemapper.smart.joyent.com/convert</code> will get a JSON response.
+					<dl>
+						<dt>To convert an URL to a <abbr title="Social Graph Node">SGN</abbr>, replace <span class="highlight">http://twitter.com/webjay</span> with the URL to be converted:</dt>
+						<dd><code>http://sgnodemapper.smart.joyent.com/convert?to=http://twitter.com/webjay</code></dd>
+						<dt>To convert a SGN to an URL, replace <span class="highlight">sgn://twitter.com/?ident=webjay</span> with the SGN to be converted:</dt>
+						<dd><code>http://sgnodemapper.smart.joyent.com/convert?from=sgn://twitter.com/?ident=webjay</code></dd>
+					</dl>
+				</p>
+			</article></li>
+			<li><article class="hentry">
+				<header>
+					<h2 class="entry-title">Hosted on the Joyent Smart Platform</h2>
+				</header>
+				<p class="entry-content">
+					The Joyent <a href="http://www.joyent.com/products/joyent-smart-platform/">Smart Platform</a> offers Javascript as the server-side programming language, thus enabling Google's Social Graph Node Mapper to be run server-side, without the hassle of bindings.
+				</p>
+			</article></li>
+			<li class="span-24"><article class="hentry">
+				<header>
+					<h2 class="entry-title">Sandbox</h2>
+				</header>
+				<p class="entry-content">
+					<div class="span-11 append-1">
+						<div class="append-bottom">
+							<form id="sgn" action="/convert" method="get" accept-charset="utf-8">
+								 <legend>Enter URLs or SGNs to be converted</legend>
+								<textarea id="urls" name="urls" required="required" placeholder="URLs or SGNs" class="span-11 last" style="height:4em;"></textarea>
+								<input type="submit" value="Convert">
+							</form>
+						</div>
+						<h3>Examples</h3>
+						<ul id="examples">
+							<li><a href="#output">http://brad.livejournal.com/</a></li>
+							<li><a href="#output">http://twitter.com/webjay</a></li>
+							<li><a href="#output">sgn://twitter.com/?ident=webjay</a></li>
+						</ul>
+					</div>
+					<div class="span-12 last">
+						<output for="urls">
+							<div id="output" class="success hide"></div>
+						</output>
+					</div>
+				</p>
+			</article></li>
+		</ol>
+	</section>
+	<div class="clearfix"></div>
 
-			<footer class="post-info">
-				<abbr class="published" title="2005-10-10T14:07:00-07:00"><!-- YYYYMMDDThh:mm:ss+ZZZZ -->
-					10th October 2005
-				</abbr>
-
-				<address class="vcard author">
-					By <a class="url fn" href="#">Enrique Ramírez</a>
-				</address>
-			</footer>
-
-			<div class="entry-content">
-
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis nunc vitae libero iaculis elementum. Nullam et justo <a href="#">non sapien</a> dapibus blandit nec et leo. Ut ut malesuada tellus.</p>
-			</div>
-		</article></li>
-	</ol>
-</section>
-
-<footer>
-	<address class="vcard body">
-		<span class="primary">
-			<strong><a href="#" class="fn url">Smashing Magazine</a></strong>
-			<span class="role">Amazing Magazine</span>
-		</span>
-		<img src="images/avatar.gif" alt="Smashing Magazine Logo" class="photo" />
-		<span class="bio">Smashing Magazine is a website and blog that offers resources and advice to web developers and web designers. It was founded by Sven Lennartz and Vitaly Friedman.</span>
-	</address>
-</footer>
+	<footer class="quiet">
+		<hr class="prepend-top">
+		<address class="vcard">
+			A <a href="http://www.webcom.dk/" rel="me" class="fn url quiet">Webcom</a></strong> service.
+		</address>
+	</footer>
+	
+</div>
 
 </body>
 </html>
