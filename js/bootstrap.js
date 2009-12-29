@@ -14,12 +14,12 @@ GET('/', function () {
 });
 
 GET('/convert', function () {
-	if (this.request.query['from'] || this.request.query['to']) {
+	if (this.request.query['from'] || this.request.query['from[]'] || this.request.query['to'] || this.request.query['to[]']) {
 		sitesLoad();
 		var result = [];
 		// convert to URL?
-		if (this.request.query['from']) {
-			var from = this.request.query['from'];
+		if (this.request.query['from'] || this.request.query['from[]']) {
+			var from = (this.request.query['from[]']) ? this.request.query['from[]'] : this.request.query['from'];
 			if (isArray(from)) {
 				for (var i in from) {
 					result.push(urlFromGraphNode(from[i]));
@@ -30,7 +30,7 @@ GET('/convert', function () {
 		}
 		// convert to SGN?
 		if (this.request.query['to']) {
-			var to = this.request.query['to'];
+			var to = (this.request.query['to[]']) ? this.request.query['to[]'] : this.request.query['to'];
 			if (isArray(to)) {
 				for (var i in to) {
 					result.push(urlToGraphNode(to[i]));
