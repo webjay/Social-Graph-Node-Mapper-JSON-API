@@ -47,18 +47,3 @@ nodemapper.registerDomain("blogger.com", {
    });
 nodemapper.addSimpleHandler("blogger.com", "pk_to_profile",
                             "http://www.blogger.com/profile/");
-
-__END__
-
-http://www.blogger.com/profile/123 sgn://blogger.com/?pk=123
-profile(sgn://blogger.com/?pk=123) http://www.blogger.com/profile/123
-
-http://foo.blogspot.com/          sgn://blogspot.com/?ident=foo
-http://www.foo.blogspot.com/      sgn://blogspot.com/?ident=foo
-http://foo.blogspot.com/path/blah sgn://blogspot.com/?ident=foo
-
-content(sgn://blogspot.com/?ident=foo) http://foo.blogspot.com/
-blog(sgn://blogspot.com/?ident=foo)    http://foo.blogspot.com/
-
-atom(sgn://blogspot.com/?ident=foo)  http://foo.blogspot.com/feeds/posts/default
-rss(sgn://blogspot.com/?ident=foo)   http://foo.blogspot.com/feeds/posts/default?alt=rss

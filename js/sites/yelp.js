@@ -20,18 +20,3 @@ nodemapper.addSimpleHandler("yelp.com", "pk_to_profile",
     "http://www.yelp.com/user_details?userid=");
 nodemapper.addSimpleHandler("yelp.com", "ident_to_profile",
     "http://", ".yelp.com");
-
-__END__
-
-http://jsmarr.yelp.com	sgn://yelp.com/?ident=jsmarr
-http://www.yelp.com/user_details?userid=Dk2IkchUjADbrC05sdsAVQ	sgn://yelp.com/?pk=Dk2IkchUjADbrC05sdsAVQ
-http://yelp.com/user_details?userid=Dk2IkchUjADbrC05sdsAVQ	sgn://yelp.com/?pk=Dk2IkchUjADbrC05sdsAVQ
-http://www.yelp.com/syndicate/user/Dk2IkchUjADbrC05sdsAVQ/rss.xml sgn://yelp.com/?pk=Dk2IkchUjADbrC05sdsAVQ	
-http://yelp.com/syndicate/user/Dk2IkchUjADbrC05sdsAVQ/rss.xml sgn://yelp.com/?pk=Dk2IkchUjADbrC05sdsAVQ	
-rss(sgn://yelp.com/?pk=Dk2IkchUjADbrC05sdsAVQ)	http://www.yelp.com/syndicate/user/Dk2IkchUjADbrC05sdsAVQ/rss.xml 
-profile(sgn://yelp.com/?pk=Dk2IkchUjADbrC05sdsAVQ) http://www.yelp.com/user_details?userid=Dk2IkchUjADbrC05sdsAVQ
-profile(sgn://yelp.com/?ident=jsmarr) http://jsmarr.yelp.com
-
-# May also contain hyphens:
-http://jsmarr-hyphen.yelp.com	sgn://yelp.com/?ident=jsmarr-hyphen
-http://www.yelp.com/user_details?userid=nkN_do3fJ9xekchVa-v68A sgn://yelp.com/?pk=nkN_do3fJ9xekchVa-v68A

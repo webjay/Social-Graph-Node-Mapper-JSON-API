@@ -121,31 +121,3 @@ nodemapper.addSimpleHandler(
 nodemapper.registerDomain(
     ["profile.myspace.com", "blog.myspace.com"],
     {urlToGraphNode: urlToGraphNodeMySpace});
-
-
-__END__
-
-http://myspace.com/foobar			sgn://myspace.com/?ident=foobar
-http://www.myspace.com/foobar			sgn://myspace.com/?ident=foobar
-http://myspace.com/foobar/			sgn://myspace.com/?ident=foobar
-
-http://profile.myspace.com/37715961		sgn://myspace.com/?pk=37715961
-http://profile.myspace.com/uhhhh_freakin_idiot  sgn://myspace.com/?ident=uhhhh_freakin_idiot
-http://profile.myspace.com/k93			sgn://myspace.com/?ident=k93
-
-http://www.myspace.com/index.cfm?fuseaction=user.viewprofile&friendid=73394553   sgn://myspace.com/?pk=73394553
-
-http://profile.myspace.com/index.cfm?fuseaction=user.viewprofile&friendid=73394553   sgn://myspace.com/?pk=73394553
-http://blog.myspace.com/index.cfm?fuseaction=blog.ListAll&friendID=64410858          sgn://myspace.com/?pk=64410858
-http://blog.myspace.com/index.cfm?fuseaction=blog.ConfirmSubscribe&friendID=64410858 sgn://myspace.com/?pk=64410858
-http://profile.myspace.com/index.cfm?fuseaction=user.viewProfile&friendID=34718576   sgn://myspace.com/?pk=34718576
-
-# Newer friend URL format:
-http://friends.myspace.com/index.cfm?fuseaction=user.viewfriends&friendID=64410858  sgn://myspace.com/?pk=64410858
-
-profile(sgn://myspace.com/?pk=123)	http://profile.myspace.com/index.cfm?fuseaction=user.viewprofile&friendid=123
-blog(sgn://myspace.com/?pk=123)		http://blog.myspace.com/index.cfm?fuseaction=blog.ListAll&friendID=123
-rss(sgn://myspace.com/?pk=123)		http://blog.myspace.com/blog/rss.cfm?friendID=123
-
-profile(sgn://myspace.com/?ident=foobar) http://www.myspace.com/foobar
-content(sgn://myspace.com/?ident=foobar) http://www.myspace.com/foobar

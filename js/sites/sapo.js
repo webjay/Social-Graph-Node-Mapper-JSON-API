@@ -24,9 +24,3 @@ nodemapper.addSimpleHandler("blogs.sapo.pt", "ident_to_foaf",
 nodemapper.addSimpleHandler("blogs.sapo.pt", "ident_to_blog",
                             "http://", ".blogs.sapo.pt/");
 
-
-__END__
-
-http://cibertulia.blogs.sapo.pt/1278408.html  sgn://blogs.sapo.pt/?ident=cibertulia
-foaf(sgn://blogs.sapo.pt/?ident=cibertulia)  http://cibertulia.blogs.sapo.pt/data/foaf
-blog(sgn://blogs.sapo.pt/?ident=cibertulia)  http://cibertulia.blogs.sapo.pt/

@@ -73,29 +73,3 @@ nodemapper.addSimpleHandler("pictures.aol.com", "ident_to_profile",
       "http://pictures.aol.com/galleries/");
 nodemapper.addSimpleHandler("pictures.aol.com", "ident_to_atom",
       "http://pictures.aol.com/galleries/", "/atom.xml");
-
-__END__
-
-aim:goim?message=Hi!+I+found+you+on+Xxxx...&screenname=Foo%20Bar sgn://aol.com/?ident=foobar
-aim:GoIM?screenname=fooBar			sgn://aol.com/?ident=foobar
-aim:goim?Screenname=foo+Bar			sgn://aol.com/?ident=foobar
-aim:goim?screenname=foo%20bar                   sgn://aol.com/?ident=foobar
-aim:fooBar					sgn://aol.com/?ident=foobar
-aim:foo+Bar					sgn://aol.com/?ident=foobar
-http://www.aimpages.com/foobar/profile.html	sgn://aol.com/?ident=foobar
-http://www.aimpages.com//foobar/profile.html	sgn://aol.com/?ident=foobar
-http://www.aimpages.com/foobar/		sgn://aol.com/?ident=foobar
-http://www.aimpages.com/foo+bar/		sgn://aol.com/?ident=foobar
-http://www.aimpages.com/foobar		sgn://aol.com/?ident=foobar
-http://openid.aol.com/foobar			sgn://aol.com/?ident=foobar
-http://openid.aol.com/foobar/		sgn://aol.com/?ident=foobar
-
-http://profiles.aim.com/foobar          sgn://aol.com/?ident=foobar
-
-openid(sgn://aol.com/?ident=foobar)		http://openid.aol.com/foobar
-chat(sgn://aol.com/?ident=foobar)		aim:GoIM?screenname=foobar
-profile(sgn://aol.com/?ident=foobar)		http://profiles.aim.com/foobar
-
-http://pictures.aol.com/galleries/josephsmarr sgn://pictures.aol.com/?ident=josephsmarr
-profile(sgn://pictures.aol.com/?ident=josephsmarr) http://pictures.aol.com/galleries/josephsmarr
-atom(sgn://pictures.aol.com/?ident=josephsmarr) http://pictures.aol.com/galleries/josephsmarr/atom.xml

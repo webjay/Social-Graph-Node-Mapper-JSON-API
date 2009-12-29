@@ -26,22 +26,3 @@ nodemapper.addSimpleHandler("friendfeed.com", "ident_to_profile",
     "http://friendfeed.com/");
 nodemapper.addSimpleHandler("friendfeed.com", "ident_to_atom",
     "http://friendfeed.com/", "?format=atom");
-
-
-__END__
-
-http://friendfeed.com/ade       sgn://friendfeed.com/?ident=ade
-http://www.friendfeed.com/ade   sgn://friendfeed.com/?ident=ade
-
-http://friendfeed.com/daveman692/comments  sgn://friendfeed.com/?ident=daveman692
-http://friendfeed.com/daveman692?num=30  sgn://friendfeed.com/?ident=daveman692
-http://friendfeed.com/daveman692?service=blog sgn://friendfeed.com/?ident=daveman692
-http://friendfeed.com/daveman692?service=digg sgn://friendfeed.com/?ident=daveman692
-http://friendfeed.com/daveman692?service=flickr sgn://friendfeed.com/?ident=daveman692
-http://friendfeed.com/daveman692?service=magnolia sgn://friendfeed.com/?ident=daveman692
-http://friendfeed.com/daveman692?service=pownce sgn://friendfeed.com/?ident=daveman692
-http://friendfeed.com/daveman692?service=twitter sgn://friendfeed.com/?ident=daveman692
-http://friendfeed.com/daveman692?service=upcoming sgn://friendfeed.com/?ident=daveman692
-
-profile(sgn://friendfeed.com/?ident=ade)	http://friendfeed.com/ade
-atom(sgn://friendfeed.com/?ident=ade)		http://friendfeed.com/ade?format=atom

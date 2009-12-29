@@ -46,23 +46,3 @@ nodemapper.addSimpleHandler("my.opera.com", "ident_to_profile",
 
 nodemapper.addSimpleHandler("my.opera.com", "ident_to_foaf",
                             "http://my.opera.com/", "/xml/foaf/");
-
-__END__
-
-http://my.opera.com/jsmarr sgn://my.opera.com/?ident=jsmarr
-http://my.opera.com/jsmarr/ sgn://my.opera.com/?ident=jsmarr
-http://my.opera.com/jSMArr/ sgn://my.opera.com/?ident=jsmarr
-http://my.opera.com/jsmarr/about sgn://my.opera.com/?ident=jsmarr
-http://my.opera.com/jsmarr/info/ sgn://my.opera.com/?ident=jsmarr
-http://my.opera.com/jsmarr/xml/foaf/ sgn://my.opera.com/?ident=jsmarr
-http://my.opera.com/1966/xml/foaf/ sgn://my.opera.com/?ident=1966
-profile(sgn://my.opera.com/?ident=jsmarr) http://my.opera.com/jsmarr/about/
-profile(sgn://my.opera.com/?ident=1966) http://my.opera.com/1966/about/
-foaf(sgn://my.opera.com/?ident=jsmarr) http://my.opera.com/jsmarr/xml/foaf/
-
-http://my.opera.com/%3EFoo/ sgn://my.opera.com/?ident=%3efoo
-http://my.opera.com/.:Foo%20Bar:./ sgn://my.opera.com/?ident=.:foo%20bar:.
-
-http://my.opera.com/Milla***/xml/foaf  sgn://my.opera.com/?ident=milla***
-http://my.opera.com/Molly-Jayne/xml/foaf sgn://my.opera.com/?ident=molly-jayne
-foaf(sgn://my.opera.com/?ident=molly-jayne) http://my.opera.com/molly-jayne/xml/foaf/

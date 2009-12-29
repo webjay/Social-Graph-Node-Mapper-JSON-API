@@ -27,16 +27,3 @@ nodemapper.registerNonHTTPHandler(function(url) {
     return "mailto:" + m[1].replace(/%40/, "@");
   }
 });
-
-__END__
-
-xmpp:foo%40bar.com    xmpp:foo@bar.com
-jabber:foo%40bar.com    xmpp:foo@bar.com
-Xmpp:foo@bar.com    xmpp:foo@bar.com
-jabber:foo@bar.com    xmpp:foo@bar.com
-
-Mailto:brad%40bar.com   mailto:brad@bar.com
-
-# TODO(bradfitz): skype.  but need to investigate sgn->??? options.
-#callto://brad.fitzpatrick  sgn://skype.com/?ident=brad.fitzpatrick
-#callto:brad.fitzpatrick    sgn://skype.com/?ident=brad.fitzpatrick

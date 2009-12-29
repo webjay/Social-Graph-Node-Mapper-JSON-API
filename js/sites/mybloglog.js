@@ -49,18 +49,3 @@ nodemapper.addSimpleHandler("mybloglog.com", "pk_to_foaf",
                             "http://www.mybloglog.com/buzz/members/mybloglog", "/foaf");
 nodemapper.addSimpleHandler("mybloglog.com", "pk_to_profile",
                             "http://www.mybloglog.com/buzz/members/mybloglog", "/");
-
-
-__END__
-
-http://www.mybloglog.com/buzz/members/1143al  sgn://mybloglog.com/?ident=1143al
-http://www.mybloglog.com/buzz/members/1143AL  sgn://mybloglog.com/?ident=1143al
-http://www.mybloglog.com/buzz/members/1143AL/ sgn://mybloglog.com/?ident=1143al
-http://mybloglog.com/buzz/members/1143AL/     sgn://mybloglog.com/?ident=1143al
-http://www.mybloglog.com/buzz/members/HERBERT/ sgn://mybloglog.com/?ident=herbert
-foaf(sgn://mybloglog.com/?ident=herbert) http://www.mybloglog.com/buzz/members/herbert/foaf
-profile(sgn://mybloglog.com/?ident=herbert) http://www.mybloglog.com/buzz/members/herbert/
-
-http://www.mybloglog.com/buzz/members/mybloglog97cb9f03ecc30acfa597/ sgn://mybloglog.com/?pk=97cb9f03ecc30acfa597
-foaf(sgn://mybloglog.com/?pk=97cb9f03ecc30acfa597) http://www.mybloglog.com/buzz/members/mybloglog97cb9f03ecc30acfa597/foaf
-profile(sgn://mybloglog.com/?pk=97cb9f03ecc30acfa597) http://www.mybloglog.com/buzz/members/mybloglog97cb9f03ecc30acfa597/

@@ -36,11 +36,3 @@ nodemapper.registerDomain(
 
 nodemapper.addSimpleHandler("wordpress.com", "ident_to_blog",
 			    "http://", ".wordpress.com/");
-
-__END__
-
-http://foo.wordpress.com/  sgn://wordpress.com/?ident=foo
-http://www.foo.wordpress.com/  sgn://wordpress.com/?ident=foo
-http://pt-br.wordpress.com/   http://pt-br.wordpress.com/
-http://de.wordpress.com/   http://de.wordpress.com/
-blog(sgn://wordpress.com/?ident=foo) http://foo.wordpress.com/

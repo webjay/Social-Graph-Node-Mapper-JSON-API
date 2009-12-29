@@ -51,22 +51,3 @@ nodemapper.addSimpleHandler("privet.ru", "ident_to_blog",
                             "http://blogs.privet.ru/user/");
 nodemapper.addSimpleHandler("privet.ru", "ident_to_profile",
                             "http://www.privet.ru/user/");
-
-
-__END__
-
-http://allatigris.gallery.ru/        sgn://gallery.ru/?ident=allatigris
-http://allatigris.gallery.ru/foaf/   sgn://gallery.ru/?ident=allatigris
-http://allatigris.gallery.ru/?favs=1 sgn://gallery.ru/?ident=allatigris
-foaf(sgn://gallery.ru/?ident=allatigris)  http://allatigris.gallery.ru/foaf/
-profile(sgn://gallery.ru/?ident=allatigris)  http://allatigris.gallery.ru/
-
-http://www.blogonline.ru/   http://www.blogonline.ru/
-http://allis.blogonline.ru/  sgn://blogonline.ru/?ident=allis
-foaf(sgn://blogonline.ru/?ident=allis)   http://allis.blogonline.ru/data/foaf
-profile(sgn://blogonline.ru/?ident=allis)   http://allis.blogonline.ru/profile
-blog(sgn://blogonline.ru/?ident=allis)   http://allis.blogonline.ru/
-
-foaf(sgn://privet.ru/?ident=aleksina_647)    http://www.privet.ru/user/aleksina_647/foaf
-blog(sgn://privet.ru/?ident=aleksina_647)    http://blogs.privet.ru/user/aleksina_647
-profile(sgn://privet.ru/?ident=aleksina_647)    http://www.privet.ru/user/aleksina_647

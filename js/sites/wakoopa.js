@@ -44,14 +44,3 @@ nodemapper.addSimpleHandler("wakoopa.com", "ident_to_profile",
     "http://wakoopa.com/");
 nodemapper.addSimpleHandler("software.wakoopa.com", "ident_to_profile",
     "http://wakoopa.com/software/");
-
-__END__
-
-http://wakoopa.com/crabbydata  sgn://wakoopa.com/?ident=crabbydata
-http://wakoopa.com/CrabbyDATA/feed/foo  sgn://wakoopa.com/?ident=crabbydata
-profile(sgn://wakoopa.com/?ident=crabbydata) http://wakoopa.com/crabbydata
-
-# software
-http://wakoopa.com/software/quartz-wm sgn://software.wakoopa.com/?ident=quartz-wm
-http://wakoopa.com/software/LAUNCHER?guid=2008-05-28%2001%3A05%3A06 sgn://software.wakoopa.com/?ident=launcher
-profile(sgn://software.wakoopa.com/?ident=quartz-wm) http://wakoopa.com/software/quartz-wm

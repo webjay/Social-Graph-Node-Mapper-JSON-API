@@ -2,7 +2,6 @@
 system.use('com.joyent.Sammy');
 system.use('org.json.json2');
 system.use('nodemapper-base');
-system.use('sites.twitter');
 
 Sammy.debug = true;
 
@@ -16,6 +15,7 @@ GET('/', function () {
 
 GET('/convert', function () {
 	if (this.request.query['from'] || this.request.query['to']) {
+		sitesLoad();
 		var result = [];
 		// convert to URL?
 		if (this.request.query['from']) {
@@ -60,6 +60,13 @@ GET('/convert', function () {
 	this.response.code = 415;
 	return 'Error 415: I need a from or to parameter.';
 });
+
+function sitesLoad () {
+	var sites = ['amazon', 'aol', 'blogspot', 'facebook', 'flickr', 'friendfeed', 'google', 'hi5', 'lastfm', 'livejournal', 'meetup', 'mybloglog', 'myspace', 'nonhttp', 'opera', 'russia', 'sapo', 'simple', 'spin-de', 'stumbleupon', 'threadless', 'tribe', 'twitter', 'wakoopa', 'wordpress', 'yelp', 'zooomr'];
+	for (var i in sites) {
+		system.use('sites.' + sites[i]);
+	}	
+}
 
 function isArray (obj) {
 	return obj.constructor == Array;

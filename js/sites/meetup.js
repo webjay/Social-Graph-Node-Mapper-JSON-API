@@ -32,15 +32,3 @@ nodemapper.registerDomain("meetup.com", {
 
 nodemapper.addSimpleHandler("meetup.com", "pk_to_profile",
 			    "http://www.meetup.com/members/", "/");
-
-__END__
-
-http://www.meetup.com/members/2949792/                 sgn://meetup.com/?pk=2949792
-http://coffee.meetup.com/171/members/2949792/?gj=sj3   sgn://meetup.com/?pk=2949792
-http://coffee.meetup.com/171/members/2949792/          sgn://meetup.com/?pk=2949792
-
-http://www.meetup.com/members/65         sgn://meetup.com/?pk=65
-http://www.meetup.com/members/65/        sgn://meetup.com/?pk=65
-http://MEETup.com/members/65             sgn://meetup.com/?pk=65
-http://meetup.com/members/65/            sgn://meetup.com/?pk=65
-profile(sgn://meetup.com/?pk=65)         http://www.meetup.com/members/65/
