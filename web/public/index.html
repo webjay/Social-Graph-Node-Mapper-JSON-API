@@ -36,18 +36,16 @@
 			});
 			jQuery.getJSON(server, parameters, function (data) {
 				jQuery('#ajaxLoader').hide();
-				jQuery.each(data, function (i, result) {
-					jQuery.each(result, function (input, results) {
-						var output = '';
-						output += '<code class="notice">' + input + '</code>';
-						output += '<dl class="success">';
-						jQuery.each(results, function (type, value) {
-							output += '<dt>' + type + '</dt>';
-							output += '<dd>' + value + '</dd>';
-						});
-						output += '</dl>';
-						jQuery('#output').append(output);
+				jQuery.each(data, function (input, results) {
+					var output = '';
+					output += '<code class="notice">' + input + '</code>';
+					output += '<dl class="success">';
+					jQuery.each(results, function (type, value) {
+						output += '<dt>' + type + '</dt>';
+						output += '<dd>' + value + '</dd>';
 					});
+					output += '</dl>';
+					jQuery('#output').append(output);
 				});
 			});
 		}
@@ -105,7 +103,7 @@
 						If a <code>callback</code> parameter is set response will be Javascript wrapped in the callback function.
 					</p>
 					<p>
-						The API can handle several <code>from</code> and <code>to</code> parameters.
+						The API can handle several <code>from</code> and <code>to</code> parameters. If you send requests via Curl you can send several of the same parameters by trailing with square brackets, like this: <code>from[]</code> / <code>to[]</code>.
 					</p>
 				</div>
 			</article></li>

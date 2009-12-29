@@ -16,16 +16,16 @@ GET('/', function () {
 GET('/convert', function () {
 	if (this.request.query['from'] || this.request.query['from[]'] || this.request.query['to'] || this.request.query['to[]']) {
 		sitesLoad();
-		var result = [];
+		var result = {};
 		// convert to URL?
 		if (this.request.query['from'] || this.request.query['from[]']) {
 			var from = (this.request.query['from[]']) ? this.request.query['from[]'] : this.request.query['from'];
 			if (isArray(from)) {
 				for (var i in from) {
-					result.push(urlFromGraphNode(from[i]));
+					result[from[i]] = urlFromGraphNode(from[i]);
 				}
 			} else {
-				result.push(urlFromGraphNode(from));
+				result[from] = urlFromGraphNode(from);
 			}
 		}
 		// convert to SGN?
@@ -33,10 +33,10 @@ GET('/convert', function () {
 			var to = (this.request.query['to[]']) ? this.request.query['to[]'] : this.request.query['to'];
 			if (isArray(to)) {
 				for (var i in to) {
-					result.push(urlToGraphNode(to[i]));
+					result[to[i]] = urlToGraphNode(to[i]);
 				}
 			} else {
-				result.push(urlToGraphNode(to));
+				result[to] = urlToGraphNode(to);
 			}
 		}
 		// any callback?
@@ -74,23 +74,21 @@ function isArray (obj) {
 
 function urlToGraphNode (url) {
 	var output = {};
-	output[url] = {};
 	var result = nodemapper.urlToGraphNode(url);
 	var type = (result.indexOf('://') > 0) ? result.substr(0, result.indexOf('://')).toLowerCase() : '?';
-	output[url][type] = result;
+	output[type] = result;
 	return output;
 }
 
 function urlFromGraphNode (url) {
 	var types = ["profile", "content", "atom", "rss", "blog", "openid", "foaf", "addfriend"];
 	var output = {};
-	output[url] = {};
 	for (var typeIdx in types) {
 		var link = nodemapper.urlFromGraphNode(url, types[typeIdx]);
 		if (!link) {
-			output[url][types[typeIdx]] = 'none';
+			output[types[typeIdx]] = 'none';
 		} else {
-			output[url][types[typeIdx]] = link;
+			output[types[typeIdx]] = link;
 		}
 	}
 	return output;
