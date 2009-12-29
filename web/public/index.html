@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
+	<meta charset="utf-8">
 	<title>Social Graph Node Mapper JSON API</title>
-	<link rel="stylesheet" type="text/css" href="/css/blueprint-css/blueprint/screen.css" media="screen, projection">
-	<!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="/css/blueprint-css/blueprint/ie.css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" type="text/css" href="css/blueprint-css/blueprint/screen.css" media="screen, projection">
+	<!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="css/blueprint-css/blueprint/ie.css" media="screen, projection"><![endif]-->
 	<script src="http://www.google.com/jsapi"></script>
-	<script>
+	<script type="text/javascript">
 		google.load('jquery', '1');
 		google.setOnLoadCallback(function(){
 			// form submit
@@ -23,6 +23,8 @@
 			});
 		});
 		function convert () {
+			jQuery('#output').empty();
+			jQuery('#ajaxLoader').show();
 			var server = 'http://sgnodemapper.smart.joyent.com/convert?callback=?';
 			//var server = 'http://127.0.0.1:8080/convert?callback=?';
 			var urls = jQuery('#urls').val();
@@ -33,7 +35,7 @@
 				parameters[type].push(url);
 			});
 			jQuery.getJSON(server, parameters, function (data) {
-				jQuery('#output').empty();
+				jQuery('#ajaxLoader').hide();
 				jQuery.each(data, function (i, result) {
 					jQuery.each(result, function (input, results) {
 						var output = '';
@@ -49,6 +51,16 @@
 				});
 			});
 		}
+	</script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-183817-19']);
+		_gaq.push(['_trackPageview']);
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+		})();
 	</script>
 </head>
 <body>
@@ -71,6 +83,7 @@
 					The Social Graph Node Mapper JSON API is a <abbr title="Representational State Transfer">RESTful</abbr> version of Google's <a href="http://code.google.com/p/google-sgnodemapper/">Social Graph Node Mapper</a>.
 					The benefit of it being <abbr title="Software as a service">SaaS</abbr> and RESTful is that you can use it in your server-side code.
 					<p>We use Social Graph Nodes within <a href="http://konfect.com/" rel="me">Konfect</a>. Try it <a href="http://konfect.com/explore/sgn%3A%2F%2Ftwitter.com%2F%3Fident%3Dwebjay">here</a>.</p>
+					<p>This project is open source, available via <a href="http://github.com/webjay/Social-Graph-Node-Mapper-JSON-API">GitHub</a>.</p>
 				</div>
 			</article></li>
 			<li><article class="hentry">
@@ -119,9 +132,11 @@
 							<li><a href="#output">http://brad.livejournal.com/</a></li>
 							<li><a href="#output">http://twitter.com/webjay</a></li>
 							<li><a href="#output">sgn://twitter.com/?ident=webjay</a></li>
+							<li><a href="#output">sgn://livejournal.com/?ident=brad</a></li>
 						</ul>
 					</div>
 					<div class="span-12 last">
+						<img id="ajaxLoader" src="img/ajax-loader.gif" width="32" height="32" alt="Ajax Loader" class="hide">
 						<output id="output" for="urls"></output>
 					</div>
 				</div>
@@ -135,6 +150,8 @@
 		<address class="vcard">
 			A <a href="http://www.webcom.dk/" rel="me" class="fn url quiet">Webcom</a> service.
 		</address>
+		Code license: <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>
+		| <a href="http://github.com/webjay/Social-Graph-Node-Mapper-JSON-API">Open Source Git repository</a>
 	</footer>
 	
 </div>
