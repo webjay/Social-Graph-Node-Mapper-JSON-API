@@ -13,7 +13,6 @@ GET('/', function () {
 	return redirect('/index.html');
 });
 
-
 GET('/convert', function () {
 	if (this.request.query['from'] || this.request.query['to']) {
 		sitesLoad();
