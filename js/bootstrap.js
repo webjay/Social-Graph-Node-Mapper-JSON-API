@@ -20,23 +20,27 @@ GET('/convert', function () {
 		// convert to URL?
 		if (this.request.query['from'] || this.request.query['from[]']) {
 			var from = (this.request.query['from[]']) ? this.request.query['from[]'] : this.request.query['from'];
-			if (isArray(from)) {
-				for (var i in from) {
-					result[from[i]] = urlFromGraphNode(from[i]);
-				}
-			} else {
-				result[from] = urlFromGraphNode(from);
+			if (!isArray(from)) {
+				from = [from];
+			}
+			for (var i in from) {
+				var url = from[i];
+				result[url] = urlFromGraphNode(url);
 			}
 		}
 		// convert to SGN?
-		if (this.request.query['to']) {
+		if (this.request.query['to'] || this.request.query['to[]']) {
 			var to = (this.request.query['to[]']) ? this.request.query['to[]'] : this.request.query['to'];
-			if (isArray(to)) {
-				for (var i in to) {
-					result[to[i]] = urlToGraphNode(to[i]);
+			if (!isArray(to)) {
+				to = [to];
+			}
+			for (var i in to) {
+				var url = to[i];
+				if (nodemapper.HTTP_REGEX.exec(url)) {
+					result[url] = urlToGraphNode(url);
+				} else {
+					result[url] = urlToGraphNodeNotHTTP(url);
 				}
-			} else {
-				result[to] = urlToGraphNode(to);
 			}
 		}
 		// any callback?
@@ -52,6 +56,10 @@ GET('/convert', function () {
 		if (callback != false) {
 			result = callback + '(' + result + ');';
 		}
+		if (this.request.query['debug']) {
+			this.response.mime = 'text/plain';
+			return result;
+		}
 		// done
 		return result;
 	}
@@ -64,7 +72,13 @@ GET('/convert', function () {
 function sitesLoad () {
 	var sites = ['amazon', 'aol', 'blogspot', 'facebook', 'flickr', 'friendfeed', 'google', 'hi5', 'lastfm', 'livejournal', 'meetup', 'mybloglog', 'myspace', 'nonhttp', 'opera', 'russia', 'sapo', 'simple', 'spin-de', 'stumbleupon', 'threadless', 'tribe', 'twitter', 'wakoopa', 'wordpress', 'yelp', 'zooomr'];
 	for (var i in sites) {
-		system.use('sites.' + sites[i]);
+		var file = system.filesystem.get('google-sgnodemapper-read-only/sites/' + sites[i] + '.js');
+		var source = file.contents;
+		var cut = source.indexOf('__END__');
+		if (cut) {
+			source = source.substr(0, cut);
+		}
+		eval(source);
 	}	
 }
 
@@ -75,7 +89,7 @@ function isArray (obj) {
 function urlToGraphNode (url) {
 	var output = {};
 	var result = nodemapper.urlToGraphNode(url);
-	var type = (result.indexOf('://') > 0) ? result.substr(0, result.indexOf('://')).toLowerCase() : '?';
+	var type = (result.indexOf('://') > 0) ? result.substr(0, result.indexOf('://')).toLowerCase() : '';
 	output[type] = result;
 	return output;
 }
@@ -86,10 +100,18 @@ function urlFromGraphNode (url) {
 	for (var typeIdx in types) {
 		var link = nodemapper.urlFromGraphNode(url, types[typeIdx]);
 		if (!link) {
-			output[types[typeIdx]] = 'none';
+			output[types[typeIdx]] = '';
 		} else {
 			output[types[typeIdx]] = link;
 		}
 	}
+	return output;
+}
+
+function urlToGraphNodeNotHTTP (url) {
+	var output = {};
+	var result = nodemapper.urlToGraphNodeNotHTTP(url);
+	var type = (result.indexOf(':') > 0) ? result.substr(0, result.indexOf(':')).toLowerCase() : '';
+	output[type] = result;
 	return output;
 }

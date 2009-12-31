@@ -9,12 +9,12 @@
 	<script type="text/javascript">
 		google.load('jquery', '1');
 		google.setOnLoadCallback(function(){
-			// form submit
+			// trap form submit
 			jQuery('#sgn').submit(function(){
 				convert();
 				return false;
 			});
-			// for tests
+			// trap tests
 			jQuery('#examples a').live('click', function () {
 				var url = jQuery(this).text();
 				jQuery('#urls').val(url);
@@ -78,8 +78,8 @@
 					<h2 class="entry-title">About</h2>
 				</header>
 				<div class="entry-content">
-					The Social Graph Node Mapper JSON API is a <abbr title="Representational State Transfer">RESTful</abbr> version of Google's <a href="http://code.google.com/p/google-sgnodemapper/">Social Graph Node Mapper</a>.
-					The benefit of it being <abbr title="Software as a service">SaaS</abbr> and RESTful is that you can use it in your server-side code.
+					The Social Graph Node Mapper JSON API is an extension of Google's <a href="http://code.google.com/p/google-sgnodemapper/">Social Graph Node Mapper</a> making it available as a public API.
+					The benefit of it being <abbr title="Software as a service">SaaS</abbr> and <abbr title="Representational State Transfer">RESTful</abbr> is that you can use it in your server-side code.
 					<p>We use Social Graph Nodes within <a href="http://konfect.com/" rel="me">Konfect</a>. Try it <a href="http://konfect.com/explore/sgn%3A%2F%2Ftwitter.com%2F%3Fident%3Dwebjay">here</a>.</p>
 					<p>
 						This project is open source, available via <a href="http://github.com/webjay/Social-Graph-Node-Mapper-JSON-API">GitHub</a>.
@@ -103,7 +103,7 @@
 						If a <code>callback</code> parameter is set response will be Javascript wrapped in the callback function.
 					</p>
 					<p>
-						The API can handle several <code>from</code> and <code>to</code> parameters. If you send requests via Curl you can send several of the same parameters by trailing with square brackets, like this: <code>from[]</code> / <code>to[]</code>.
+						The API can handle several <code>from</code> and <code>to</code> parameters. If you send requests via Curl you can send several of the same parameters by trailing with square brackets, like this: <code>from[]=sgn://twitter.com/?ident=webjay&amp;from[]=sgn://livejournal.com/?ident=brad</code>.
 					</p>
 				</div>
 			</article></li>
