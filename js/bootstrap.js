@@ -23,12 +23,6 @@ GET('/convert', function () {
 			for (var i in from) {
 				var url = from[i];
 				result[url] = urlFromGraphNode(url);
-			if (isArray(from)) {
-				for (var i in from) {
-					result.push(urlFromGraphNode(from[i]));
-				}
-			} else {
-				result.push(urlFromGraphNode(from));
 			}
 		}
 		// convert to SGN?
@@ -44,12 +38,6 @@ GET('/convert', function () {
 				} else {
 					result[url] = urlToGraphNodeNotHTTP(url);
 				}
-			if (isArray(to)) {
-				for (var i in to) {
-					result.push(urlToGraphNode(to[i]));
-				}
-			} else {
-				result.push(urlToGraphNode(to));
 			}
 		}
 		// any callback?
@@ -97,26 +85,21 @@ function isArray (obj) {
 
 function urlToGraphNode (url) {
 	var output = {};
-	output[url] = {};
 	var result = nodemapper.urlToGraphNode(url);
 	var type = (result.indexOf('://') > 0) ? result.substr(0, result.indexOf('://')).toLowerCase() : '';
 	output[type] = result;
-	var type = (result.indexOf('://') > 0) ? result.substr(0, result.indexOf('://')).toLowerCase() : '?';
-	output[url][type] = result;
 	return output;
 }
 
 function urlFromGraphNode (url) {
 	var types = ["profile", "content", "atom", "rss", "blog", "openid", "foaf", "addfriend"];
 	var output = {};
-	output[url] = {};
 	for (var typeIdx in types) {
 		var link = nodemapper.urlFromGraphNode(url, types[typeIdx]);
 		if (!link) {
 			output[types[typeIdx]] = '';
-			output[url][types[typeIdx]] = 'none';
 		} else {
-			output[url][types[typeIdx]] = link;
+			output[types[typeIdx]] = link;
 		}
 	}
 	return output;
