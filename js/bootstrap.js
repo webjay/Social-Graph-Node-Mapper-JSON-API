@@ -31,6 +31,9 @@ GET('/convert', function () {
 				}
 			} else {
 				result.push(urlFromGraphNode(from));
+<<<<<<< HEAD
+>>>>>>> b71916e... simplified result structure
+=======
 >>>>>>> b71916e... simplified result structure
 			}
 		}
@@ -55,6 +58,9 @@ GET('/convert', function () {
 				}
 			} else {
 				result.push(urlToGraphNode(to));
+<<<<<<< HEAD
+>>>>>>> b71916e... simplified result structure
+=======
 >>>>>>> b71916e... simplified result structure
 			}
 		}
@@ -106,8 +112,13 @@ function urlToGraphNode (url) {
 	output[url] = {};
 	var result = nodemapper.urlToGraphNode(url);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	var type = (result.indexOf('://') > 0) ? result.substr(0, result.indexOf('://')).toLowerCase() : '';
 	output[type] = result;
+=======
+	var type = (result.indexOf('://') > 0) ? result.substr(0, result.indexOf('://')).toLowerCase() : '?';
+	output[url][type] = result;
+>>>>>>> b71916e... simplified result structure
 =======
 	var type = (result.indexOf('://') > 0) ? result.substr(0, result.indexOf('://')).toLowerCase() : '?';
 	output[url][type] = result;
@@ -123,7 +134,11 @@ function urlFromGraphNode (url) {
 		var link = nodemapper.urlFromGraphNode(url, types[typeIdx]);
 		if (!link) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			output[types[typeIdx]] = '';
+=======
+			output[url][types[typeIdx]] = 'none';
+>>>>>>> b71916e... simplified result structure
 =======
 			output[url][types[typeIdx]] = 'none';
 >>>>>>> b71916e... simplified result structure
