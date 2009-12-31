@@ -1,3 +1,0 @@
-[submodule "web/google-sgnodemapper-read-only"]
-	path = web/google-sgnodemapper-read-only
-	url = git@github.com:webjay/sgNodeMapper.git
