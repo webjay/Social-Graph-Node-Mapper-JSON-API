@@ -37,6 +37,7 @@
 			jQuery.getJSON(server, parameters, function (data) {
 				jQuery('#ajaxLoader').hide();
 				jQuery.each(data, function (i, result) {
+					//console.dir(data);
 					jQuery.each(result, function (input, results) {
 						var output = '';
 						output += '<code class="notice">' + input + '</code>';
