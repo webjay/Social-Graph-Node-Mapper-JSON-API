@@ -16,21 +16,31 @@ GET('/', function () {
 GET('/convert', function () {
 	if (this.request.query['from'] || this.request.query['from[]'] || this.request.query['to'] || this.request.query['to[]']) {
 		sitesLoad();
-		var result = {};
+		var result = [];
 		// convert to URL?
 		if (this.request.query['from'] || this.request.query['from[]']) {
 			var from = (this.request.query['from[]']) ? this.request.query['from[]'] : this.request.query['from'];
+<<<<<<< HEAD
 			if (!isArray(from)) {
 				from = [from];
 			}
 			for (var i in from) {
 				var url = from[i];
 				result[url] = urlFromGraphNode(url);
+=======
+			if (isArray(from)) {
+				for (var i in from) {
+					result.push(urlFromGraphNode(from[i]));
+				}
+			} else {
+				result.push(urlFromGraphNode(from));
+>>>>>>> b71916e... simplified result structure
 			}
 		}
 		// convert to SGN?
 		if (this.request.query['to'] || this.request.query['to[]']) {
 			var to = (this.request.query['to[]']) ? this.request.query['to[]'] : this.request.query['to'];
+<<<<<<< HEAD
 			if (!isArray(to)) {
 				to = [to];
 			}
@@ -41,6 +51,14 @@ GET('/convert', function () {
 				} else {
 					result[url] = urlToGraphNodeNotHTTP(url);
 				}
+=======
+			if (isArray(to)) {
+				for (var i in to) {
+					result.push(urlToGraphNode(to[i]));
+				}
+			} else {
+				result.push(urlToGraphNode(to));
+>>>>>>> b71916e... simplified result structure
 			}
 		}
 		// any callback?
@@ -88,21 +106,32 @@ function isArray (obj) {
 
 function urlToGraphNode (url) {
 	var output = {};
+	output[url] = {};
 	var result = nodemapper.urlToGraphNode(url);
+<<<<<<< HEAD
 	var type = (result.indexOf('://') > 0) ? result.substr(0, result.indexOf('://')).toLowerCase() : '';
 	output[type] = result;
+=======
+	var type = (result.indexOf('://') > 0) ? result.substr(0, result.indexOf('://')).toLowerCase() : '?';
+	output[url][type] = result;
+>>>>>>> b71916e... simplified result structure
 	return output;
 }
 
 function urlFromGraphNode (url) {
 	var types = ["profile", "content", "atom", "rss", "blog", "openid", "foaf", "addfriend"];
 	var output = {};
+	output[url] = {};
 	for (var typeIdx in types) {
 		var link = nodemapper.urlFromGraphNode(url, types[typeIdx]);
 		if (!link) {
+<<<<<<< HEAD
 			output[types[typeIdx]] = '';
+=======
+			output[url][types[typeIdx]] = 'none';
+>>>>>>> b71916e... simplified result structure
 		} else {
-			output[types[typeIdx]] = link;
+			output[url][types[typeIdx]] = link;
 		}
 	}
 	return output;
