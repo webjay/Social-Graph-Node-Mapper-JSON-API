@@ -1,6 +1,7 @@
 
 system.use('com.joyent.Sammy');
 system.use('org.json.json2');
+system.use('nodemapper-base');
 
 Sammy.debug = true;
 // uneval(this);
@@ -66,10 +67,6 @@ GET('/convert', function () {
 });
 
 function sitesLoad () {
-	// get nodemapper-base
-	var file = system.filesystem.get('google-sgnodemapper-read-only/nodemapper-base.js');
-	eval(file.contents);
-	// get sites
 	var sites = ['amazon', 'aol', 'blogspot', 'facebook', 'flickr', 'friendfeed', 'google', 'hi5', 'lastfm', 'livejournal', 'meetup', 'mybloglog', 'myspace', 'nonhttp', 'opera', 'russia', 'sapo', 'simple', 'spin-de', 'stumbleupon', 'threadless', 'tribe', 'twitter', 'wakoopa', 'wordpress', 'yelp', 'zooomr'];
 	for (var i in sites) {
 		var file = system.filesystem.get('google-sgnodemapper-read-only/sites/' + sites[i] + '.js');
