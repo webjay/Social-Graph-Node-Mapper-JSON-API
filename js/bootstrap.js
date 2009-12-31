@@ -3,7 +3,7 @@ system.use('com.joyent.Sammy');
 system.use('org.json.json2');
 system.use('nodemapper-base');
 
-//Sammy.debug = true;
+Sammy.debug = true;
 // uneval(this);
 
 GET('/', function () {
