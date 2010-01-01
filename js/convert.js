@@ -27,9 +27,8 @@ GET('/convert', function () {
 		}
 		// prepare response
 		result = JSON.stringify(result);
-		result = '[' + result + ']';
 		if (callback != false) {
-			result = callback + '(' + result + ');';
+			result = callback + '([' + result + ']);';
 		}
 		if (this.request.query['debug']) {
 			this.response.mime = 'text/plain';
