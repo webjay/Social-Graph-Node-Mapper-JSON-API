@@ -36,21 +36,19 @@
 			}
 			jQuery.getJSON(server, parameters, function (data) {
 				jQuery('#ajaxLoader').hide();
-				jQuery.each(data, function (i, result) {
-					jQuery.each(result, function (input, results) {
-						var output = '';
-						output += '<code class="notice">' + input + '</code>';
-						output += '<dl class="success">';
-						jQuery.each(results, function (type, value) {
-							if (value == '') {
-								value = 'n/a';
-							}
-							output += '<dt>' + type + '</dt>';
-							output += '<dd>' + value + '</dd>';
-						});
-						output += '</dl>';
-						jQuery('#output').append(output);
+				jQuery.each(data[0], function (input, results) {
+					var output = '';
+					output += '<code class="notice">' + input + '</code>';
+					output += '<dl class="success">';
+					jQuery.each(results, function (type, value) {
+						if (value == '') {
+							value = 'n/a';
+						}
+						output += '<dt>' + type + '</dt>';
+						output += '<dd>' + value + '</dd>';
 					});
+					output += '</dl>';
+					jQuery('#output').append(output);
 				});
 			});
 		}
