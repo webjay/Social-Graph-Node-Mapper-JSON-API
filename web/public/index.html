@@ -5,10 +5,11 @@
 	<title>Social Graph Node Mapper JSON API</title>
 	<link rel="stylesheet" type="text/css" href="css/blueprint-css/blueprint/screen.css" media="screen, projection">
 	<!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="css/blueprint-css/blueprint/ie.css" media="screen, projection"><![endif]-->
-	<script src="http://www.google.com/jsapi"></script>
+	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 	<script type="text/javascript">
 		google.load('jquery', '1');
-		google.setOnLoadCallback(function(){
+		google.setOnLoadCallback(init);
+		function init () {
 			// trap form submit
 			jQuery('#sgn').submit(function(){
 				convert();
@@ -21,7 +22,7 @@
 				convert();
 				return false;
 			});
-		});
+		}
 		function convert () {
 			jQuery('#output').empty();
 			jQuery('#ajaxLoader').show();
@@ -29,20 +30,21 @@
 			//var server = 'http://127.0.0.1:8080/convert?callback=?';
 			var urls = jQuery('#urls').val();
 			urls = urls.split("\n");
-			var parameters = {to: [], from: []};
-			jQuery.each(urls, function (i, url) {
-				var type = (url.substr(0, 3).toLowerCase() == 'sgn') ? 'from' : 'to';
-				parameters[type].push(url);
-			});
+			var parameters = {url: []};
+			for (var i in urls) {
+				parameters['url'].push(urls[i]);
+			}
 			jQuery.getJSON(server, parameters, function (data) {
 				jQuery('#ajaxLoader').hide();
 				jQuery.each(data, function (i, result) {
-					//console.dir(data);
 					jQuery.each(result, function (input, results) {
 						var output = '';
 						output += '<code class="notice">' + input + '</code>';
 						output += '<dl class="success">';
 						jQuery.each(results, function (type, value) {
+							if (value == '') {
+								value = 'n/a';
+							}
 							output += '<dt>' + type + '</dt>';
 							output += '<dd>' + value + '</dd>';
 						});
@@ -97,16 +99,16 @@
 				<div class="entry-content">
 					<dl>
 						<dt>To convert an URL to a <abbr title="Social Graph Node">SGN</abbr>, replace <span class="highlight">http://twitter.com/webjay</span> with the URL to be converted:</dt>
-						<dd><code>http://sgnodemapper.smart.joyent.com/convert?to=http://twitter.com/webjay</code></dd>
+						<dd><code>http://sgnodemapper.smart.joyent.com/convert?url=http://twitter.com/webjay</code></dd>
 						<dt>To convert a SGN to an URL, replace <span class="highlight">sgn://twitter.com/?ident=webjay</span> with the SGN to be converted:</dt>
-						<dd><code>http://sgnodemapper.smart.joyent.com/convert?from=sgn://twitter.com/?ident=webjay</code></dd>
+						<dd><code>http://sgnodemapper.smart.joyent.com/convert?url=sgn://twitter.com/?ident=webjay</code></dd>
 					</dl>
 					<p>
 						Requests to the API will get a JSON response.
 						If a <code>callback</code> parameter is set response will be Javascript wrapped in the callback function.
 					</p>
 					<p>
-						The API can handle several <code>from</code> and <code>to</code> parameters. If you send requests via Curl you can send several of the same parameters by trailing with square brackets, like this: <code>from[]=sgn://twitter.com/?ident=webjay&amp;from[]=sgn://livejournal.com/?ident=brad</code>.
+						The API can handle several <code>url</code> parameters. If you send requests via Curl you can send several of the same parameters by trailing with square brackets, like this: <code>url[]=sgn://twitter.com/?ident=webjay&amp;url[]=sgn://livejournal.com/?ident=brad</code>.
 					</p>
 				</div>
 			</article></li>
